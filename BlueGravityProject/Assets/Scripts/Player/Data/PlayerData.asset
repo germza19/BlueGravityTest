@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementVelocity: 10
   maxVelocity: 25
-  wallCheckDistance: 10
+  wallCheckDistance: 1
   whatIsWall:
     serializedVersion: 2
     m_Bits: 8

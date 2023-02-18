@@ -15,14 +15,9 @@ namespace Test.Player.Movement
 
         public void OnMoveInput(InputAction.CallbackContext context)
         {
-            //if (player.StateMachine.CurrentState == player.TalkState)
-            //{
-            //    return;
-            //}
             MovementInput = context.ReadValue<Vector2>();
             NormInputX = (int)(MovementInput * Vector2.right).normalized.x;
-            NormInputY = (int)(MovementInput * Vector2.up).normalized.y;        
-
+            NormInputY = (int)(MovementInput * Vector2.up).normalized.y;
         }
         public void OnInteractInput(InputAction.CallbackContext context)
         {

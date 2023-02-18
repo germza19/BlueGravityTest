@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using Test.Player.StateMachineSystem;
 using Test.Player.Movement;
 using UnityEngine;
-using System.Security.Cryptography.X509Certificates;
+using Test.UI.DialogueSystem;
+using Test.UI;
 
 namespace Test.Player
 {
@@ -19,14 +20,16 @@ namespace Test.Player
 
         [SerializeField] public PlayerData playerData;
 
-        [SerializeField] private Transform wallCheck;
+        public CanvasManager canvasManager { get; private set; }
         public Animator Anim { get; private set; }
         public PlayerInputController InputController { get; private set; }
         public CircleCollider2D MovementCollider { get; private set; }
         public Rigidbody2D RB { get; private set; }
 
+        [SerializeField] private Transform wallCheck;
         private Vector2 workspace;
         public Vector2 facingDirection;
+        public Vector2 lastFacingDirection;
 
 
 
@@ -38,10 +41,12 @@ namespace Test.Player
             MoveState = new PlayerMoveState(this, StateMachine, playerData, "Move");
             TalkState = new PlayerTalkState(this, StateMachine, playerData, "Talk");
 
+            canvasManager = GameObject.Find("Canvas").GetComponent<CanvasManager>();
+
             Anim = GetComponentInChildren<Animator>();
             RB = GetComponent<Rigidbody2D>();
             InputController = GetComponentInChildren<PlayerInputController>();
-            MovementCollider = GetComponentInChildren<CircleCollider2D>();
+            MovementCollider = GetComponent<CircleCollider2D>();
         }
         private void Start()
         {
@@ -52,7 +57,15 @@ namespace Test.Player
             StateMachine.CurrentState.LogicUpdate();
             stateName = StateMachine.CurrentState.StateName();
 
-            facingDirection = new Vector2(InputController.NormInputX, InputController.NormInputY);
+            if(StateMachine.CurrentState != TalkState)
+            {
+                facingDirection = new Vector2(InputController.NormInputX, InputController.NormInputY);
+            }
+            else
+            {
+                facingDirection = Vector2.zero;
+            }
+            
         }
         private void FixedUpdate()
         {
@@ -76,6 +89,13 @@ namespace Test.Player
         private void OnDrawGizmos()
         {
             Gizmos.DrawLine(wallCheck.position, (Vector2)wallCheck.position + ( playerData.wallCheckDistance * facingDirection));
+        }
+        public void SetLastDirection()
+        {
+            if(facingDirection.x != 0 || facingDirection.y != 0)
+            {
+                lastFacingDirection = facingDirection;
+            }
         }
 
     }

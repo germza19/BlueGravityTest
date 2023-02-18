@@ -18,16 +18,28 @@ namespace Test.Player.StateMachineSystem
         public override void Enter()
         {
             base.Enter();
+
+            player.canvasManager.SetDialoguePanel(true);
         }
 
         public override void Exit()
         {
             base.Exit();
+
+            player.canvasManager.SetDialoguePanel(false);
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+
+            player.SetVelocityZero();
+
+            if(player.InputController.InteractInput)
+            {
+                player.InputController.PressedInteract();
+                stateMachine.ChangeState(player.IdleState);
+            }
         }
 
         public override void PhysicsUpdate()

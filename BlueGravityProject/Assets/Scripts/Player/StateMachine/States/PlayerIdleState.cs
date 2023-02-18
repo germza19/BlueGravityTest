@@ -22,7 +22,6 @@ namespace Test.Player.StateMachineSystem
             XInput = player.InputController.NormInputX;
             YInput = player.InputController.NormInputY;
             isTouchingWall = player.CheckIfTouchingWall();
-            Debug.Log(isTouchingWall);
         }
 
         public override void Enter()
