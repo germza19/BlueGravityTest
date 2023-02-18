@@ -319,6 +319,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Next",
+                    "type": "Button",
+                    "id": "b13a7ffe-8a6c-4f6f-b65c-30c1e3483e6a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Cancel",
                     "type": "Button",
                     "id": "67dccc3a-03f5-44ff-8ae3-d96a5665e932",
@@ -386,15 +395,6 @@
                     "type": "PassThrough",
                     "id": "57893b0b-3246-4016-acbd-056bc0ceb0c5",
                     "expectedControlType": "Quaternion",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Next",
-                    "type": "Button",
-                    "id": "b13a7ffe-8a6c-4f6f-b65c-30c1e3483e6a",
-                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

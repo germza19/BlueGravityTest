@@ -11,7 +11,8 @@ namespace Test.Player.StateMachineSystem
         protected int XInput;
         protected int YInput;
         protected bool isTouchingWall;
-        public PlayerMoveState(PlayerManager player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
+
+        public PlayerMoveState(PlayerManager playerManager, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(playerManager, stateMachine, playerData, animBoolName)
         {
         }
 
@@ -19,9 +20,9 @@ namespace Test.Player.StateMachineSystem
         {
             base.DoChecks();
 
-            XInput = player.InputController.NormInputX;
-            YInput = player.InputController.NormInputY;
-            isTouchingWall = player.CheckIfTouchingWall();
+            XInput = playerManager.InputController.NormInputX;
+            YInput = playerManager.InputController.NormInputY;
+            isTouchingWall = playerManager.CheckIfTouchingWall();
         }
 
         public override void Enter()
@@ -40,11 +41,11 @@ namespace Test.Player.StateMachineSystem
 
             if ((XInput == 0 && YInput == 0) || isTouchingWall)
             {
-                stateMachine.ChangeState(player.IdleState);
+                stateMachine.ChangeState(playerManager.IdleState);
             }
             else
             {
-                player.SetVelocity(XInput, YInput, playerData.movementVelocity);
+                playerManager.SetVelocity(XInput, YInput, playerData.movementVelocity);
             }
         }
 

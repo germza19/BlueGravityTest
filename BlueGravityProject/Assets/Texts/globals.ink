@@ -1,1 +1,0 @@
-VAR item_name = ""

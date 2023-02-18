@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
 
-namespace Test.UI.DialogueSystem
+namespace Test.DialogueSystem
 {
     public class DialogueVariables
     {

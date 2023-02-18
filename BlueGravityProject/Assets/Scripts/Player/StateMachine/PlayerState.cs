@@ -6,7 +6,7 @@ namespace Test.Player.StateMachineSystem
 {
     public class PlayerState
     {
-        protected PlayerManager player;
+        protected PlayerManager playerManager;
         protected PlayerStateMachine stateMachine;
         protected PlayerData playerData;
         private string animBoolName;
@@ -17,9 +17,9 @@ namespace Test.Player.StateMachineSystem
         protected float startTime;
 
 
-        public PlayerState(PlayerManager player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
+        public PlayerState(PlayerManager playerManager, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
         {
-            this.player = player;
+            this.playerManager = playerManager;
             this.stateMachine = stateMachine;
             this.playerData = playerData;
             this.animBoolName = animBoolName;
@@ -28,14 +28,14 @@ namespace Test.Player.StateMachineSystem
         public virtual void Enter()
         {
             DoChecks();
-            player.Anim.SetBool(animBoolName, true);
+            playerManager.Anim.SetBool(animBoolName, true);
             startTime = Time.time;
             isAnimationFinished = false;
             isExitingState = false;
         }
         public virtual void Exit()
         {
-            player.Anim.SetBool(animBoolName, false);
+            playerManager.Anim.SetBool(animBoolName, false);
             isExitingState = true;
         }
         public virtual void LogicUpdate()               // Called every frame , like update

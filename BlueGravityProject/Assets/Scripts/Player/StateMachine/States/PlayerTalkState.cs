@@ -6,7 +6,7 @@ namespace Test.Player.StateMachineSystem
 {
     public class PlayerTalkState : PlayerState
     {
-        public PlayerTalkState(PlayerManager player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
+        public PlayerTalkState(PlayerManager playerManager, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(playerManager, stateMachine, playerData, animBoolName)
         {
         }
 
@@ -19,29 +19,29 @@ namespace Test.Player.StateMachineSystem
         {
             base.Enter();
 
-            player.InputController.ShiftActionMapToUI();
-            player.canvasManager.SetDialoguePanel(true);
+            playerManager.InputController.ShiftActionMapToUI();
+
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            player.InputController.ShiftActionMapToPlayer();
-            player.canvasManager.SetDialoguePanel(false);
+            //player.InputController.ShiftActionMapToPlayer();
+            //player.CanvasManager.SetDialoguePanel(false);
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
 
-            player.SetVelocityZero();
+            playerManager.SetVelocityZero();
 
-            if(player.InputController.InteractInput)
-            {
-                player.InputController.PressedInteract();
-                stateMachine.ChangeState(player.IdleState);
-            }
+            //if(player.InputController.InteractInput)
+            //{
+            //    player.InputController.PressedInteract();
+            //    stateMachine.ChangeState(player.IdleState);
+            //}
         }
 
         public override void PhysicsUpdate()

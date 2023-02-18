@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Test.Player.StateMachineSystem;
 using Test.Player.Movement;
 using UnityEngine;
-using Test.UI.DialogueSystem;
+using Test.DialogueSystem;
 using Test.UI;
 
 namespace Test.Player
@@ -20,7 +20,8 @@ namespace Test.Player
 
         [SerializeField] public PlayerData playerData;
 
-        public CanvasManager canvasManager { get; private set; }
+        public CanvasManager CanvasManager { get; private set; }
+        public DialogueManager DialogueManager { get; private set; }
         public Animator Anim { get; private set; }
         public PlayerInputController InputController { get; private set; }
         public CircleCollider2D MovementCollider { get; private set; }
@@ -41,7 +42,7 @@ namespace Test.Player
             MoveState = new PlayerMoveState(this, StateMachine, playerData, "Move");
             TalkState = new PlayerTalkState(this, StateMachine, playerData, "Talk");
 
-            canvasManager = GameObject.Find("Canvas").GetComponent<CanvasManager>();
+            CanvasManager = GameObject.Find("Canvas").GetComponent<CanvasManager>();
 
             Anim = GetComponentInChildren<Animator>();
             RB = GetComponent<Rigidbody2D>();

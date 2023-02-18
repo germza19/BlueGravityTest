@@ -16,13 +16,11 @@ namespace Test.Player.Movement
         public bool NextInput { get; private set; }
         InputActionMap playerActionMap;
         InputActionMap uIActionMap;
-
-        private void Awake()
+        public void Awake()
         {
             playerActionMap = this.GetComponent<PlayerInput>().actions.FindActionMap("Player");
             uIActionMap = this.GetComponent<PlayerInput>().actions.FindActionMap("UI");
         }
-
         public void OnMoveInput(InputAction.CallbackContext context)
         {
             MovementInput = context.ReadValue<Vector2>();
@@ -57,6 +55,16 @@ namespace Test.Player.Movement
                 SubmitInput = false;
             }
         }
+        public bool GetSubmitPressed()
+        {
+            bool result = SubmitInput;
+            SubmitInput = false;
+            return result;
+        }
+        public void PressedSubmit()
+        {
+            SubmitInput = false;
+        }
         public void OnNextInput(InputAction.CallbackContext context)
         {
             if (context.performed)
@@ -68,22 +76,13 @@ namespace Test.Player.Movement
                 NextInput = false;
             }
         }
-        public bool GetSubmitPressed()
-        {
-            bool result = SubmitInput;
-            SubmitInput = false;
-            return result;
-        }
-        public void RegisterSubmitPressed()
-        {
-            SubmitInput = false;
-        }
         public bool GetNextPressed()
         {
             bool result = NextInput;
             NextInput = false;
             return result;
         }
+ 
         public void ShiftActionMapToUI()
         {
             playerActionMap.Disable();

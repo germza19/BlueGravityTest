@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Test.Player;
 
-namespace Test.UI.DialogueSystem
+namespace Test.DialogueSystem
 {
     public class DialogueTrigger : MonoBehaviour
     {
         [SerializeField] private GameObject visualCue;
         public bool playerInRange;
         [SerializeField] TextAsset inkJSON;
-        private PlayerManager player;
+        private PlayerManager playerManager;
 
         private void Awake()
         {
@@ -27,7 +27,7 @@ namespace Test.UI.DialogueSystem
         {
             if (other.gameObject.tag == "Player")
             {
-                player = other.gameObject.GetComponent<PlayerManager>();
+                playerManager = other.gameObject.GetComponent<PlayerManager>();
                 playerInRange = true;
                 visualCue.SetActive(true);
             }
@@ -48,11 +48,11 @@ namespace Test.UI.DialogueSystem
             if(!playerInRange)
                 return;
 
-            if (player.InputController.InteractInput && player.StateMachine.CurrentState != player.TalkState )
+            if (playerManager.InputController.InteractInput && playerManager.StateMachine.CurrentState != playerManager.TalkState )
                 //&& !DialogueManager.GetInstance().dialogueIsPlaying)
             {
-                player.InputController.PressedInteract();
-                player.StateMachine.ChangeState(player.TalkState);
+                playerManager.InputController.PressedInteract();
+                playerManager.StateMachine.ChangeState(playerManager.TalkState);
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
             }
         }

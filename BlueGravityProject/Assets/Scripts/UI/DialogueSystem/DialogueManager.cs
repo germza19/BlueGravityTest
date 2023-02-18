@@ -1,17 +1,20 @@
-using Ink.Runtime;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using Test.Player;
-using Test.Player.Movement;
 using UnityEngine.EventSystems;
+using Ink.Runtime;
+using Test.Player.Movement;
+using Test.Player;
+using UnityEngine.InputSystem;
 
-namespace Test.UI.DialogueSystem
+namespace Test.DialogueSystem
 {
     public class DialogueManager : MonoBehaviour
     {
-        [SerializeField] TextMeshProUGUI dialogueText;
+        [SerializeField] public GameObject dialoguePanel;
+        [SerializeField] private TextMeshProUGUI dialogueText;
+        [SerializeField] private TextMeshProUGUI displayNameText;
         [SerializeField] private GameObject[] choices;
         [SerializeField] private Animator portraitAnimator;
         [SerializeField] private Animator layoutAnimator;
@@ -32,8 +35,9 @@ namespace Test.UI.DialogueSystem
         private const string SPEAKER_TAG = "speaker";
         private const string PORTRAIT_TAG = "portrait";
         private const string LAYOUT_TAG = "layout";
-        public PlayerInputController inputController { get; private set; }
-        public PlayerManager player { get; private set; }
+        [SerializeField] PlayerManager playerManager;
+        [SerializeField] PlayerInputController inputController;
+
 
         private void Awake()
         {
@@ -42,8 +46,6 @@ namespace Test.UI.DialogueSystem
                 Debug.LogWarning("More than one DialogueManager in scene");
             }
             instance = this;
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
-            inputController = player.InputController;
             dialogueVariables = new DialogueVariables(loadGlobalJSON);
         }
 
@@ -51,9 +53,11 @@ namespace Test.UI.DialogueSystem
         {
             return instance;
         }
+
         private void Start()
         {
             dialogueIsPlaying = false;
+            dialoguePanel.SetActive(false);
             choicesText = new TextMeshProUGUI[choices.Length];
             choicesBG.SetActive(false);
 
@@ -80,12 +84,20 @@ namespace Test.UI.DialogueSystem
             {
                 return;
             }
-            //if (playerInput.pressedInteract && dialoguePanel.gameObject.activeSelf)
-            //if (canContinueToNextLine && playerInput.GetNextPressed() && dialoguePanel.gameObject.activeSelf)
-            if (canContinueToNextLine && inputController.GetNextPressed() && currentStory.currentChoices.Count == 0)
+            //if (canContinueToNextLine && inputController.GetNextPressed() && currentStory.currentChoices.Count == 0)
+            //{
+            //    if (!choices[0].gameObject.activeSelf && continueIcon.activeSelf)
+            //    {
+            //        ContinueStory();
+            //    }
+            //    //playerInput.pressedInteract = false;
+
+            //}
+            if (canContinueToNextLine && inputController.NextInput && currentStory.currentChoices.Count == 0)
             {
                 if (!choices[0].gameObject.activeSelf && continueIcon.activeSelf)
                 {
+                    inputController.GetNextPressed();
                     ContinueStory();
                 }
                 //playerInput.pressedInteract = false;
@@ -101,13 +113,12 @@ namespace Test.UI.DialogueSystem
         {
             currentStory = new Story(inkJSON.text);
             dialogueIsPlaying = true;
-            //dialoguePanel.SetActive(true);
-            player.StateMachine.ChangeState(player.TalkState);
+            dialoguePanel.SetActive(true);
             dialogueVariables.StartListening(currentStory);
 
             //reset portrait
-            portraitAnimator.Play("default");
-            layoutAnimator.Play("left");
+            //portraitAnimator.Play("default");
+            //layoutAnimator.Play("left");
 
             ContinueStory();
 
@@ -116,6 +127,9 @@ namespace Test.UI.DialogueSystem
         private void ExitDialogueMode()
         {
             StartCoroutine(ExitDialogue());
+            //dialogueIsPlaying = false;
+            //dialoguePanel.SetActive(false);
+            //dialogueText.text = "";
         }
 
         private IEnumerator ExitDialogue()
@@ -123,8 +137,7 @@ namespace Test.UI.DialogueSystem
             yield return new WaitForSeconds(0.2f);
             dialogueVariables.StopListening(currentStory);
             dialogueIsPlaying = false;
-            player.TalkState.Exit();
-            //dialoguePanel.SetActive(false);
+            dialoguePanel.SetActive(false);
             dialogueText.text = "";
 
         }
@@ -144,9 +157,8 @@ namespace Test.UI.DialogueSystem
             else
             {
                 ExitDialogueMode();
-                //playerInput.ShiftActionMapToPlayer();
-                player.StateMachine.ChangeState(player.IdleState);
-                //player.states.transitionToState(player.states.idleState);
+                inputController.ShiftActionMapToPlayer();
+                playerManager.StateMachine.ChangeState(playerManager.IdleState);
             }
         }
         private void HandleTags(List<string> currentTags)
@@ -164,6 +176,7 @@ namespace Test.UI.DialogueSystem
                 switch (tagKey)
                 {
                     case SPEAKER_TAG:
+                        displayNameText.text = tagValue;
                         //Debug.Log("speaker=" + tagValue);
                         break;
                     case PORTRAIT_TAG:
@@ -184,8 +197,6 @@ namespace Test.UI.DialogueSystem
         private void Displaychoices()
         {
             List<Choice> currentChoices = currentStory.currentChoices;
-            //Debug.Log(currentStory.currentChoices);
-            //Debug.Log(currentChoices);
             if (currentChoices.Count > choices.Length)
             {
                 Debug.LogError("More choices than UI can support");
@@ -193,15 +204,12 @@ namespace Test.UI.DialogueSystem
             int index = 0;
             foreach (Choice choice in currentChoices)
             {
-                //Debug.Log("ok");
                 choices[index].gameObject.SetActive(true);
                 choicesText[index].text = choice.text;
                 index++;
             }
-            //choicesBG.SetActive(false);
             for (int i = index; i < choices.Length; i++)
             {
-                //Debug.Log("demas");
                 choices[i].gameObject.SetActive(false);
             }
             StartCoroutine(SelectFirstChoice());
@@ -220,8 +228,9 @@ namespace Test.UI.DialogueSystem
             if (canContinueToNextLine)
             {
                 currentStory.ChooseChoiceIndex(choiceIndex);
-                inputController.RegisterSubmitPressed();
+                inputController.PressedSubmit();
                 ContinueStory();
+
             }
 
         }
