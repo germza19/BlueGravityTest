@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Test.Player;
-using Test.Player.Movement;
 
 namespace Test.UI.DialogueSystem
 {
@@ -10,6 +9,7 @@ namespace Test.UI.DialogueSystem
     {
         [SerializeField] private GameObject visualCue;
         public bool playerInRange;
+        [SerializeField] TextAsset inkJSON;
         private PlayerManager player;
 
         private void Awake()
@@ -48,10 +48,12 @@ namespace Test.UI.DialogueSystem
             if(!playerInRange)
                 return;
 
-            if (player.InputController.InteractInput && player.StateMachine.CurrentState != player.TalkState)
+            if (player.InputController.InteractInput && player.StateMachine.CurrentState != player.TalkState )
+                //&& !DialogueManager.GetInstance().dialogueIsPlaying)
             {
                 player.InputController.PressedInteract();
                 player.StateMachine.ChangeState(player.TalkState);
+                DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
             }
         }
     }

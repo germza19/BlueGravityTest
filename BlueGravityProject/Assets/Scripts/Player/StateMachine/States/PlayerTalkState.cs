@@ -19,6 +19,7 @@ namespace Test.Player.StateMachineSystem
         {
             base.Enter();
 
+            player.InputController.ShiftActionMapToUI();
             player.canvasManager.SetDialoguePanel(true);
         }
 
@@ -26,6 +27,7 @@ namespace Test.Player.StateMachineSystem
         {
             base.Exit();
 
+            player.InputController.ShiftActionMapToPlayer();
             player.canvasManager.SetDialoguePanel(false);
         }
 

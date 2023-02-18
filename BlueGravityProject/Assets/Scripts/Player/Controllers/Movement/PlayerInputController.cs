@@ -12,6 +12,16 @@ namespace Test.Player.Movement
         public int NormInputX { get; private set; }
         public int NormInputY { get; private set; }
         public bool InteractInput { get; private set; }
+        public bool SubmitInput { get; private set; }
+        public bool NextInput { get; private set; }
+        InputActionMap playerActionMap;
+        InputActionMap uIActionMap;
+
+        private void Awake()
+        {
+            playerActionMap = this.GetComponent<PlayerInput>().actions.FindActionMap("Player");
+            uIActionMap = this.GetComponent<PlayerInput>().actions.FindActionMap("UI");
+        }
 
         public void OnMoveInput(InputAction.CallbackContext context)
         {
@@ -35,6 +45,54 @@ namespace Test.Player.Movement
         public void PressedInteract()
         {
             InteractInput = false;
+        }
+        public void OnSubmitInput(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                SubmitInput = true;
+            }
+            else if (context.canceled)
+            {
+                SubmitInput = false;
+            }
+        }
+        public void OnNextInput(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                NextInput = true;
+            }
+            else if (context.canceled)
+            {
+                NextInput = false;
+            }
+        }
+        public bool GetSubmitPressed()
+        {
+            bool result = SubmitInput;
+            SubmitInput = false;
+            return result;
+        }
+        public void RegisterSubmitPressed()
+        {
+            SubmitInput = false;
+        }
+        public bool GetNextPressed()
+        {
+            bool result = NextInput;
+            NextInput = false;
+            return result;
+        }
+        public void ShiftActionMapToUI()
+        {
+            playerActionMap.Disable();
+            uIActionMap.Enable();
+        }
+        public void ShiftActionMapToPlayer()
+        {
+            uIActionMap.Disable();
+            playerActionMap.Enable();
         }
     }
 }
