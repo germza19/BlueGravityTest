@@ -138,6 +138,7 @@ namespace Test.DialogueSystem
             dialogueVariables.StopListening(currentStory);
             dialogueIsPlaying = false;
             dialoguePanel.SetActive(false);
+            playerManager.StateMachine.ChangeState(playerManager.IdleState);
             dialogueText.text = "";
 
         }
@@ -158,7 +159,7 @@ namespace Test.DialogueSystem
             {
                 ExitDialogueMode();
                 inputController.ShiftActionMapToPlayer();
-                playerManager.StateMachine.ChangeState(playerManager.IdleState);
+                //playerManager.StateMachine.ChangeState(playerManager.IdleState);
             }
         }
         private void HandleTags(List<string> currentTags)
