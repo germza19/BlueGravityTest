@@ -43,8 +43,10 @@ namespace Test.Player.StateMachineSystem
 
             playerManager.SetVelocityZero();
 
+            
             if ((XInput !=0 || YInput != 0 ) && !isTouchingWall)
             {
+                playerManager.CheckIfShouldFlip(XInput);
                 stateMachine.ChangeState(playerManager.MoveState);
             }
         }

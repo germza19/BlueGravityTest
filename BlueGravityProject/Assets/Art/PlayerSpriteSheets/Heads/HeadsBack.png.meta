@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 576c6600b82a2884d97038b0eaedd904
+guid: ed0cd44abff74df48af59a88fe93ae4f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BodiesFront_0
+      name: FacesBack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 007beb45a4ec7d342896a20ed0fe602c
-      internalID: -1759438259
+      spriteID: 4e2cd7c681bf77e4b8abe51217aa3e7f
+      internalID: -116876454
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BodiesFront_1
+      name: FacesBack_1
       rect:
         serializedVersion: 2
         x: 128
@@ -139,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f34de8cac42e30241888d02a007a9340
-      internalID: -1125389750
+      spriteID: e34d8d17a8b917c469ad13ecdc84ab29
+      internalID: -246139665
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BodiesFront_2
+      name: FacesBack_2
       rect:
         serializedVersion: 2
         x: 256
@@ -160,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bdfd16f6701f954b8c1d4b978a1d05d
-      internalID: -181206336
+      spriteID: 92e27fe55915f8b46ba56045d0300fa8
+      internalID: -36375757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BodiesFront_3
+      name: FacesBack_3
       rect:
         serializedVersion: 2
         x: 384
@@ -181,8 +181,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0dacd2189a97c5547976f17abc9d7ed2
-      internalID: -1566143359
+      spriteID: cf9041575d184404ea5e1d7167c3bf69
+      internalID: -43449703
       vertices: []
       indices: 
       edges: []
@@ -198,10 +198,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BodiesFront_0: -1759438259
-      BodiesFront_2: -181206336
-      BodiesFront_1: -1125389750
-      BodiesFront_3: -1566143359
+      FacesBack_2: -36375757
+      FacesBack_1: -246139665
+      FacesBack_0: -116876454
+      FacesBack_3: -43449703
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

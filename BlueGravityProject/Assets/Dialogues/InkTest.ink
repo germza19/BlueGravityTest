@@ -13,8 +13,8 @@ What items are you interested in? #speaker:Merchant #portrait:Merchant #layout: 
     +[Clothes]
         ~items = "Clothes"
         -> chosen
-    +[Weapons]
-        ~items = "Weapons"
+    +[Masks]
+        ~items = "Masks"
         ->chosen
         
         

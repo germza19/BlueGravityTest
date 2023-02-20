@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 576c6600b82a2884d97038b0eaedd904
+guid: fad5831eeb0c033448d73689c71bdc0b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BodiesFront_0
+      name: FacesFront_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 007beb45a4ec7d342896a20ed0fe602c
-      internalID: -1759438259
+      spriteID: d6daf3e07e5a9344f946a28db2a6ba7c
+      internalID: -754399650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BodiesFront_1
+      name: FacesFront_1
       rect:
         serializedVersion: 2
         x: 128
@@ -139,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f34de8cac42e30241888d02a007a9340
-      internalID: -1125389750
+      spriteID: 0db6b5a0e3a75d4418e738336bb30444
+      internalID: -1156023459
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BodiesFront_2
+      name: FacesFront_2
       rect:
         serializedVersion: 2
         x: 256
@@ -160,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bdfd16f6701f954b8c1d4b978a1d05d
-      internalID: -181206336
+      spriteID: 379dc4bc6110ae843847333fac77663f
+      internalID: -371744452
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BodiesFront_3
+      name: FacesFront_3
       rect:
         serializedVersion: 2
         x: 384
@@ -181,8 +181,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0dacd2189a97c5547976f17abc9d7ed2
-      internalID: -1566143359
+      spriteID: fe7f746431e245643820c93ff9721c62
+      internalID: -1683286840
       vertices: []
       indices: 
       edges: []
@@ -198,10 +198,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BodiesFront_0: -1759438259
-      BodiesFront_2: -181206336
-      BodiesFront_1: -1125389750
-      BodiesFront_3: -1566143359
+      FacesFront_2: -371744452
+      FacesFront_0: -754399650
+      FacesFront_1: -1156023459
+      FacesFront_3: -1683286840
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -28,6 +28,7 @@ namespace Test.Player.StateMachineSystem
         public override void Enter()
         {
             base.Enter();
+            playerManager.CheckIfShouldFlip(XInput);
         }
 
         public override void Exit()
@@ -39,12 +40,13 @@ namespace Test.Player.StateMachineSystem
         {
             base.LogicUpdate();
 
+            playerManager.CheckIfShouldFlip(XInput);
             if ((XInput == 0 && YInput == 0) || isTouchingWall)
             {
                 stateMachine.ChangeState(playerManager.IdleState);
             }
             else
-            {
+            {                
                 playerManager.SetVelocity(XInput, YInput, playerData.movementVelocity);
             }
         }

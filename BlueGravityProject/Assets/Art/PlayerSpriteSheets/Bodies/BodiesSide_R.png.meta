@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 576c6600b82a2884d97038b0eaedd904
+guid: 46f618e09373db146bdb5d9b7733553c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BodiesFront_0
+      name: BodiesSide_R_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 007beb45a4ec7d342896a20ed0fe602c
-      internalID: -1759438259
+      spriteID: 7cf78a54984316c4c8b7bb2a920c0332
+      internalID: 458765063
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BodiesFront_1
+      name: BodiesSide_R_1
       rect:
         serializedVersion: 2
         x: 128
@@ -139,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f34de8cac42e30241888d02a007a9340
-      internalID: -1125389750
+      spriteID: 635f2ea02029fc5479199dcc692fe91e
+      internalID: -229602487
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BodiesFront_2
+      name: BodiesSide_R_2
       rect:
         serializedVersion: 2
         x: 256
@@ -160,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bdfd16f6701f954b8c1d4b978a1d05d
-      internalID: -181206336
+      spriteID: 36562f0f2c41527489ad4c3adde059ae
+      internalID: 1407107736
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BodiesFront_3
+      name: BodiesSide_R_3
       rect:
         serializedVersion: 2
         x: 384
@@ -181,8 +181,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0dacd2189a97c5547976f17abc9d7ed2
-      internalID: -1566143359
+      spriteID: ad908223ff1a7a04390eac056e062bb1
+      internalID: -1899568716
       vertices: []
       indices: 
       edges: []
@@ -198,10 +198,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BodiesFront_0: -1759438259
-      BodiesFront_2: -181206336
-      BodiesFront_1: -1125389750
-      BodiesFront_3: -1566143359
+      BodiesSide_R_1: -229602487
+      BodiesSide_R_0: 458765063
+      BodiesSide_R_3: -1899568716
+      BodiesSide_R_2: 1407107736
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

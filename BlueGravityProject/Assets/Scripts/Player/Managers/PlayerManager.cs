@@ -24,13 +24,13 @@ namespace Test.Player
         public DialogueManager DialogueManager { get; private set; }
         public Animator Anim { get; private set; }
         public PlayerInputController InputController { get; private set; }
-        public CircleCollider2D MovementCollider { get; private set; }
+        public CapsuleCollider2D MovementCollider { get; private set; }
         public Rigidbody2D RB { get; private set; }
 
         [SerializeField] private Transform wallCheck;
         private Vector2 workspace;
         public Vector2 facingDirection;
-        public Vector2 lastFacingDirection;
+        public int lastXFacingDirection;
 
 
 
@@ -47,7 +47,8 @@ namespace Test.Player
             Anim = GetComponentInChildren<Animator>();
             RB = GetComponent<Rigidbody2D>();
             InputController = GetComponentInChildren<PlayerInputController>();
-            MovementCollider = GetComponent<CircleCollider2D>();
+            MovementCollider = GetComponent<CapsuleCollider2D>();
+            lastXFacingDirection = 1;
         }
         private void Start()
         {
@@ -58,15 +59,11 @@ namespace Test.Player
             StateMachine.CurrentState.LogicUpdate();
             stateName = StateMachine.CurrentState.StateName();
 
+
             if(StateMachine.CurrentState != TalkState)
             {
                 facingDirection = new Vector2(InputController.NormInputX, InputController.NormInputY);
             }
-            else
-            {
-                facingDirection = Vector2.zero;
-            }
-            
         }
         private void FixedUpdate()
         {
@@ -91,13 +88,30 @@ namespace Test.Player
         {
             Gizmos.DrawLine(wallCheck.position, (Vector2)wallCheck.position + ( playerData.wallCheckDistance * facingDirection));
         }
-        public void SetLastDirection()
+
+        //public void SetLastXDirection()
+        //{
+        //    if(InputController.NormInputX != 0)
+        //    {
+        //        lastXFacingDirection = InputController.NormInputX;
+        //    }
+        //}
+        public void CheckIfShouldFlip(int xInput)
         {
-            if(facingDirection.x != 0 || facingDirection.y != 0)
+            if (xInput != 0 && xInput != lastXFacingDirection)
             {
-                lastFacingDirection = facingDirection;
+                Flip();
+                lastXFacingDirection = xInput;
             }
         }
+        private void Flip()
+        {
+            //transform.Rotate(0f, 180f, 0f);
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
+
 
     }
 
