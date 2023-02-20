@@ -5,6 +5,8 @@ using Test.Player.Movement;
 using UnityEngine;
 using Test.DialogueSystem;
 using Test.UI;
+using Test.Player.Skins;
+using Test.Player.InventorySystem;
 
 namespace Test.Player
 {

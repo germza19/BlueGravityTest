@@ -2,28 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory
+namespace Test.Player.InventorySystem
 {
-    private List<Item> itemsList;
-
-    public Inventory()
+    public class Inventory
     {
-        itemsList = new List<Item>();
+        private List<Item> itemsList;
 
-        AddItem(new Item { itemType = Item.ItemType.Head, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.Head, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.Body, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.Body, amount = 1 });
-        Debug.Log(itemsList.Count);
+        public Inventory()
+        {
+            itemsList = new List<Item>();
+
+            AddItem(new Item { itemBodyPart = Item.ItemBodyPart.head, itemType = Item.ItemType.skullHead, amount = 1 });
+            AddItem(new Item { itemBodyPart = Item.ItemBodyPart.body, itemType = Item.ItemType.samuraiBody, amount = 1 });
+            AddItem(new Item { itemBodyPart = Item.ItemBodyPart.head, itemType = Item.ItemType.soldierHead, amount = 1 });
+            AddItem(new Item { itemBodyPart = Item.ItemBodyPart.body, itemType = Item.ItemType.farmerBody, amount = 1 });
+            Debug.Log(itemsList.Count);
+        }
+
+        public void AddItem(Item item)
+        {
+            itemsList.Add(item);
+        }
+
+        public List<Item> GetItemList()
+        {
+            return itemsList;
+        }
     }
 
-    public void AddItem(Item item)
-    {
-        itemsList.Add(item);
-    }
-
-    public List<Item> GetItemList()
-    {
-        return itemsList;
-    }
 }
