@@ -16,9 +16,9 @@ namespace Test.Player
         public PlayerMoveState MoveState { get; private set; }
         public PlayerTalkState TalkState { get; private set; }
 
-        [SerializeField] public string stateName;
+        [field: SerializeField] public string stateName { get; set; }
 
-        [SerializeField] public PlayerData playerData;
+        [field: SerializeField] public PlayerData playerData { get; private set; }
 
         public CanvasManager CanvasManager { get; private set; }
         public DialogueManager DialogueManager { get; private set; }
@@ -26,11 +26,15 @@ namespace Test.Player
         public PlayerInputController InputController { get; private set; }
         public CapsuleCollider2D MovementCollider { get; private set; }
         public Rigidbody2D RB { get; private set; }
+        [field: SerializeField] public RenderedArea HeadRenderArea { get; private set; }
+        [field: SerializeField] public RenderedArea BodyRenderedArea { get; private set; }
+
 
         [SerializeField] private Transform wallCheck;
         private Vector2 workspace;
         public Vector2 facingDirection;
         public int lastXFacingDirection;
+        public int lastYFacingDirection;
 
 
 
@@ -63,6 +67,7 @@ namespace Test.Player
             if(StateMachine.CurrentState != TalkState)
             {
                 facingDirection = new Vector2(InputController.NormInputX, InputController.NormInputY);
+                ChangeRenderedArea();
             }
         }
         private void FixedUpdate()
@@ -88,14 +93,18 @@ namespace Test.Player
         {
             Gizmos.DrawLine(wallCheck.position, (Vector2)wallCheck.position + ( playerData.wallCheckDistance * facingDirection));
         }
+        public void SetLastYDirection(int xInput,int yInput)
+        {
+            if (xInput == 0)
+            {
+                lastYFacingDirection = yInput;
+            }
+            else
+            {
+                lastYFacingDirection = 0;
+            }
 
-        //public void SetLastXDirection()
-        //{
-        //    if(InputController.NormInputX != 0)
-        //    {
-        //        lastXFacingDirection = InputController.NormInputX;
-        //    }
-        //}
+        }
         public void CheckIfShouldFlip(int xInput)
         {
             if (xInput != 0 && xInput != lastXFacingDirection)
@@ -106,13 +115,35 @@ namespace Test.Player
         }
         private void Flip()
         {
-            //transform.Rotate(0f, 180f, 0f);
             Vector3 theScale = transform.localScale;
             theScale.x *= -1;
             transform.localScale = theScale;
         }
+        public void ChangeRenderedArea()
+        {
+            if(InputController.NormInputX != 0)
+            {
+                HeadRenderArea.SetIsSide();
+                BodyRenderedArea.SetIsSide();
+            }
+            else
+            {
+                if(InputController.NormInputY != 0)
+                {
+                    if (InputController.NormInputY > 0)
+                    {
+                        HeadRenderArea.SetIsBack();
+                        BodyRenderedArea.SetIsBack();
+                    }
+                    else
+                    {
+                        HeadRenderArea.SetIsFront();
+                        BodyRenderedArea.SetIsFront();
+                    }
+                }
 
-
+            }
+        }
     }
 
 

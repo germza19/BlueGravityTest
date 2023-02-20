@@ -5,20 +5,67 @@ using UnityEngine;
 public class RenderedArea : MonoBehaviour
 {
     public MeshFilter meshFilter;
-    public Vector2 pixelsLowerLeft;
-    public Vector2 pixelsUpperRight;
 
-    public void Start()
+
+    public bool isFront;
+    public Vector2 frontPixelsLowerLeft;
+    public Vector2 frontPixelsUpperRight;
+    public bool isSide;
+    public Vector2 sidePixelsLowerLeft;
+    public Vector2 sidePixelsUppderRight;
+    public bool isBack;
+    public Vector2 backPixelsLowerLeft;
+    public Vector2 backPixelsUpperRight;
+
+    public void Awake()
     {
         meshFilter = GetComponent<MeshFilter>();
+        isFront = true;
+        isSide = false;
+        isBack = false;
+        MovementAnimation();
 
     }
     public void Update()
     {
-        CreateAnimationMesh(meshFilter);
+        MovementAnimation();
+    }
+    public void MovementAnimation()
+    {
+        if (isFront)
+        {
+            SelectArea(meshFilter, frontPixelsLowerLeft, frontPixelsUpperRight);
+        }
+        else if (isSide)
+        {
+            SelectArea(meshFilter, sidePixelsLowerLeft, sidePixelsUppderRight);
+        }
+        else if (isBack)
+        {
+            SelectArea(meshFilter, backPixelsLowerLeft, backPixelsUpperRight);
+        }
     }
 
-    private void CreateAnimationMesh(MeshFilter meshFilter)
+    public void SetIsFront()
+    {
+        isFront = true;
+        isBack = false;
+        isSide = false;
+    }
+    public void SetIsSide()
+    {
+        isFront = false;
+        isBack = false;
+        isSide = true;
+    }
+    public void SetIsBack()
+    {
+        isFront = false;
+        isBack = true;
+        isSide = false;
+    }
+
+    private void SelectArea(MeshFilter meshFilter, Vector2 currentLowerLeft, Vector2 currentUpperRight)
     {
         Mesh mesh = new Mesh();
 
@@ -34,10 +81,10 @@ public class RenderedArea : MonoBehaviour
         float textureWidth = 384f;
         float textureHeight = 256f;
 
-        uv[0] = new Vector2(pixelsLowerLeft.x / textureWidth, pixelsLowerLeft.y / textureHeight);
-        uv[1] = new Vector2(pixelsLowerLeft.x / textureWidth, pixelsUpperRight.y / textureHeight);
-        uv[2] = new Vector2(pixelsUpperRight.x / textureWidth, pixelsUpperRight.y / textureHeight);
-        uv[3] = new Vector2(pixelsUpperRight.x / textureWidth, pixelsLowerLeft.y / textureHeight);
+        uv[0] = new Vector2(currentLowerLeft.x / textureWidth, currentLowerLeft.y / textureHeight);
+        uv[1] = new Vector2(currentLowerLeft.x / textureWidth, currentUpperRight.y / textureHeight);
+        uv[2] = new Vector2(currentUpperRight.x / textureWidth, currentUpperRight.y / textureHeight);
+        uv[3] = new Vector2(currentUpperRight.x / textureWidth, currentLowerLeft.y / textureHeight);
 
         triangles[0] = 0;
         triangles[1] = 1;

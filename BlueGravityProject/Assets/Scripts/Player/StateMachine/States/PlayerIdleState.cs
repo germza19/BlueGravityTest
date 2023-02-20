@@ -46,6 +46,7 @@ namespace Test.Player.StateMachineSystem
             
             if ((XInput !=0 || YInput != 0 ) && !isTouchingWall)
             {
+                playerManager.SetLastYDirection(XInput, YInput);
                 playerManager.CheckIfShouldFlip(XInput);
                 stateMachine.ChangeState(playerManager.MoveState);
             }
