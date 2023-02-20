@@ -22,12 +22,15 @@ namespace Test.Player
 
         public CanvasManager CanvasManager { get; private set; }
         public DialogueManager DialogueManager { get; private set; }
+        [field: SerializeField] public InventoryManager InventoryManager { get; private set; }
         public Animator Anim { get; private set; }
         public PlayerInputController InputController { get; private set; }
         public CapsuleCollider2D MovementCollider { get; private set; }
         public Rigidbody2D RB { get; private set; }
         [field: SerializeField] public RenderedArea HeadRenderArea { get; private set; }
         [field: SerializeField] public RenderedArea BodyRenderedArea { get; private set; }
+
+        private Inventory inventory;
 
 
         [SerializeField] private Transform wallCheck;
@@ -53,6 +56,8 @@ namespace Test.Player
             InputController = GetComponentInChildren<PlayerInputController>();
             MovementCollider = GetComponent<CapsuleCollider2D>();
             lastXFacingDirection = 1;
+            inventory = new Inventory();
+            InventoryManager.SetInventory(inventory);
         }
         private void Start()
         {
