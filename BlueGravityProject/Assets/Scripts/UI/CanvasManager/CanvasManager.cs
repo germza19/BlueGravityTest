@@ -94,6 +94,7 @@ namespace Test.UI
             SetActiveBodiesShopSlots(true);
             SetActiveShopUI(false);
             SetActiveDialoguePanel(false);
+            SetActivePauseMenu(false);
         }
 
         public void Update()
