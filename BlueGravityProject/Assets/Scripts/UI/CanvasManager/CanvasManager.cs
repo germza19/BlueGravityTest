@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Test.DialogueSystem;
 using Test.Player;
 using TMPro;
 using UnityEngine;
@@ -14,12 +15,21 @@ namespace Test.UI
         [field: SerializeField] public GameObject HeadsShopSlots { get; private set; }
         [field: SerializeField] public GameObject BodiesShopSlots { get; private set; }
         [field: SerializeField] public GameObject DialoguePanel { get; private set; }
-        public TextMeshProUGUI goldAmount;
+        [field: SerializeField] public TextMeshProUGUI goldAmountShop { get; private set; }
+        [field: SerializeField] public TextMeshProUGUI goldAmountInventory { get; private set; }
+        private int amountOfGoldToGive;
+
+        public void SetAmountOfGoldToGive( int value)
+        {
+            amountOfGoldToGive = value;
+        }
 
 
         public void FixedUpdate()
         {
-            goldAmount.text = playerManager.GetGoldAmount().ToString();
+            goldAmountShop.text = playerManager.GetGoldAmount().ToString();         // optimize with event
+            goldAmountInventory.text = playerManager.GetGoldAmount().ToString();
+            //CheckIfShouldOpenShop();
         }
         public void SetActivePlayerInventoryPanel(bool value)
         {
@@ -77,7 +87,76 @@ namespace Test.UI
         }
         public void CloseShopUI()
         {
-            SetActiveShopUI(false);
+            if(playerManager.StateMachine.CurrentState != playerManager.TalkState)
+            {
+                SetActiveShopUI(false);
+            }
+            
+        }
+
+        public void CheckIfShouldGiveMoney()
+        {
+            string giveMoney = ((Ink.Runtime.StringValue)DialogueManager.GetInstance().GetVariableState("GiveGold")).value;
+
+            if (giveMoney != null)
+            {
+                Debug.Log(giveMoney);
+                switch (giveMoney)
+                {
+                    case "":
+                        break;
+                    case "true":
+                        playerManager.ModifyGoldAmount(amountOfGoldToGive);
+                        break;
+                    case "false":
+                        Debug.Log("AlreadyGiven");
+                        break;
+                    default:
+                        Debug.LogWarning("no giveGold variable");
+                        break;
+                }
+            }
+        }
+        public void CheckIfShouldOpenShop()
+        {
+            string OpenShop = ((Ink.Runtime.StringValue)DialogueManager.GetInstance().GetVariableState("OpenShop")).value;
+
+            if(OpenShop != null && !ShopUI.activeSelf)
+            {
+                Debug.Log(OpenShop);
+                switch(OpenShop)
+                {
+                    case "":
+                        if(ShopUI.activeSelf)
+                        {
+                            SetActiveShopUI(false);
+                        }
+                        break;
+                    case "true":
+                        if(!ShopUI.activeSelf)
+                        {
+                            SetActiveShopUI(true);
+                            if (PlayerInventoryPanel.activeSelf)
+                            {
+                                SetActivePlayerInventoryPanel(false);
+                            }                        
+                        }
+                        break;
+                    case "false":
+                        if (ShopUI.activeSelf)
+                        {
+                            SetActiveShopUI(false);
+                        }
+                        break;
+                    default:
+                        Debug.LogWarning("no shop variable");
+                        break;
+                }
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }

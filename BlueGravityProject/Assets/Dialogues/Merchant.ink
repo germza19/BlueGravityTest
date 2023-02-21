@@ -11,21 +11,23 @@ Sadly I don't have many items right now. Most costumes where already bought. It'
 
 
     +[Yes, please]
-        ~accept = "Yes"
+        ~OpenShop = "true"
         -> Accept
     +[Not right now]
-        ~accept = "No"
+        ~OpenShop = "false"
         ->Deny
         
         
 === Accept ===
 I would like to see what you have. #speaker:Player #portrait:Player #layout: OnRight
 Perfect! You have never seen costumes like the ones i have to sell... #speaker:Merchant #portrait:Merchant #layout: OnLeft
-->END
+ ~OpenShop = ""
+->DONE
+
 
 === Deny ===
+
 I think I'm going to look elsewere first. Thanks any way #speaker:Player #portrait:Player #layout: OnRight
 I understand! Wish you luck finding what you are looking for. #speaker:Merchant #portrait:Merchant #layout: OnLeft
-
-
-->END
+ ~OpenShop = ""
+->DONE

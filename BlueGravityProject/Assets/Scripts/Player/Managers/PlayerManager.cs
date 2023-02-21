@@ -44,7 +44,7 @@ namespace Test.Player
         private int lastXFacingDirection;
         private int lastYFacingDirection;
         [SerializeField] int StartGoldAmount;
-        private int currentGoldAmount;
+        public int currentGoldAmount;
 
 
 
@@ -162,6 +162,10 @@ namespace Test.Player
         public int GetGoldAmount()
         {
             return currentGoldAmount;
+        }
+        public void ModifyGoldAmount( int amount)
+        {
+            currentGoldAmount += amount;
         }
 
         public void BoughtItem(Item.ItemType itemType)

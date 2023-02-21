@@ -11,6 +11,8 @@ namespace Test.DialogueSystem
         public bool playerInRange;
         [SerializeField] TextAsset inkJSON;
         private PlayerManager playerManager;
+        [SerializeField] private bool givesMoney;
+        [SerializeField] private int amountOfMonetToGive;
 
         private void Awake()
         {
@@ -51,9 +53,13 @@ namespace Test.DialogueSystem
             if (playerManager.InputController.InteractInput && playerManager.StateMachine.CurrentState != playerManager.TalkState )
                 //&& !DialogueManager.GetInstance().dialogueIsPlaying)
             {
-                playerManager.InputController.PressedInteract();
+                playerManager.InputController.PressedInteract();       
                 playerManager.StateMachine.ChangeState(playerManager.TalkState);
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+                if (givesMoney)
+                {
+                    playerManager.CanvasManager.SetAmountOfGoldToGive(amountOfMonetToGive);
+                }
             }
         }
     }
