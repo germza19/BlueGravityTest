@@ -32,7 +32,7 @@ namespace Test.Player
         [field: SerializeField] public RenderedArea HeadRenderArea { get; private set; }
         [field: SerializeField] public RenderedArea BodyRenderedArea { get; private set; }
 
-        private Inventory inventory;
+        public Inventory inventory { get; private set; }
 
 
         [SerializeField] private Transform wallCheck;

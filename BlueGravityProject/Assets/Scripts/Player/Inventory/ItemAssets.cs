@@ -12,6 +12,9 @@ namespace Test.Player.InventorySystem
         {
             Instance = this;
         }
+
+        public GameObject pfItemButton;
+
         public int headIndex = 0;
         public int bodyIndex = 1;
 

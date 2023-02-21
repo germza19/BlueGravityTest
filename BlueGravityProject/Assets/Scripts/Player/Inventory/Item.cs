@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Test.Player.InventorySystem
 {
+    [Serializable]
     public class Item
     {
         public enum ItemBodyPart
@@ -25,9 +27,14 @@ namespace Test.Player.InventorySystem
 
         public ItemType itemType;
         public ItemBodyPart itemBodyPart;
+        public bool isOnIventory;
         public int amount;
         public int price;
 
+        public void SetOninventary(bool value)
+        {
+            isOnIventory = value;
+        }
         public int GetBodyPartIndex(ItemAssets itemAssets)
         {
             switch (itemBodyPart)
