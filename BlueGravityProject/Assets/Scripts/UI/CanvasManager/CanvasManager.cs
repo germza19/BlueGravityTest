@@ -19,7 +19,7 @@ namespace Test.UI
 
         public void FixedUpdate()
         {
-            goldAmount.text = playerManager.currentGoldAmount.ToString();
+            goldAmount.text = playerManager.GetGoldAmount().ToString();
         }
         public void SetActivePlayerInventoryPanel(bool value)
         {

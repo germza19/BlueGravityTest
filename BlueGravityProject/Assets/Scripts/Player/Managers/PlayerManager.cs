@@ -40,11 +40,11 @@ namespace Test.Player
 
         [SerializeField] private Transform wallCheck;
         private Vector2 workspace;
-        public Vector2 facingDirection;
-        public int lastXFacingDirection;
-        public int lastYFacingDirection;
-        public int StartGoldAmount;
-        public int currentGoldAmount;
+        private Vector2 facingDirection;
+        private int lastXFacingDirection;
+        private int lastYFacingDirection;
+        [SerializeField] int StartGoldAmount;
+        private int currentGoldAmount;
 
 
 
@@ -64,7 +64,6 @@ namespace Test.Player
             lastXFacingDirection = 1;
             inventory = new Inventory();
             ShopInventoryManager.SetInventory(inventory);
-            StartGoldAmount = 200;
             currentGoldAmount = StartGoldAmount;
             GetGoldAmount();
         }

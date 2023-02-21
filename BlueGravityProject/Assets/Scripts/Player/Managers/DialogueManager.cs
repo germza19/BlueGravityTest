@@ -160,7 +160,7 @@ namespace Test.DialogueSystem
             else
             {
                 ExitDialogueMode();
-                inputController.ShiftActionMapToPlayer();
+                //inputController.ShiftActionMapToPlayer();
                 //playerManager.StateMachine.ChangeState(playerManager.IdleState);
             }
         }

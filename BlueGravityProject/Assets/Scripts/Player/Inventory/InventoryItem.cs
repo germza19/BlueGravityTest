@@ -83,8 +83,8 @@ namespace Test.Player.InventorySystem
         {
             if (GetItem().isOnIventory == true)
             {
-                PlayerInventory parentInventoryComponent = transform.GetComponentInParent<PlayerInventory>();
-                if(parentInventoryComponent == null)
+                ShopStockManager parentStockManager = transform.GetComponentInParent<ShopStockManager>();
+                if (parentStockManager == null)
                 {
                     TrySellItem(GetItem(),GetItem().itemType);
                 }

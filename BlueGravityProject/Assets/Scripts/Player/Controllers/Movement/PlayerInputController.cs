@@ -15,12 +15,12 @@ namespace Test.Player.Movement
         public bool SubmitInput { get; private set; }
         public bool NextInput { get; private set; }
         public bool InventoryInput { get; private set; }
-        InputActionMap playerActionMap;
-        InputActionMap uIActionMap;
+        //InputActionMap playerActionMap;
+        //InputActionMap uIActionMap;
         public void Awake()
         {
-            playerActionMap = this.GetComponent<PlayerInput>().actions.FindActionMap("Player");
-            uIActionMap = this.GetComponent<PlayerInput>().actions.FindActionMap("UI");
+            //playerActionMap = this.GetComponent<PlayerInput>().actions.FindActionMap("Player");
+            //uIActionMap = this.GetComponent<PlayerInput>().actions.FindActionMap("UI");
         }
         public void OnMoveInput(InputAction.CallbackContext context)
         {
@@ -100,16 +100,16 @@ namespace Test.Player.Movement
             InventoryInput = false;
         }
  
-        public void ShiftActionMapToUI()
-        {
-            playerActionMap.Disable();
-            uIActionMap.Enable();
-        }
-        public void ShiftActionMapToPlayer()
-        {
-            uIActionMap.Disable();
-            playerActionMap.Enable();
-        }
+        //public void ShiftActionMapToUI()
+        //{
+        //    playerActionMap.Disable();
+        //    uIActionMap.Enable();
+        //}
+        //public void ShiftActionMapToPlayer()
+        //{
+        //    uIActionMap.Disable();
+        //    playerActionMap.Enable();
+        //}
     }
 }
 

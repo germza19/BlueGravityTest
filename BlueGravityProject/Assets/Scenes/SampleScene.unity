@@ -2074,11 +2074,7 @@ MonoBehaviour:
   <HeadRenderArea>k__BackingField: {fileID: 739297299}
   <BodyRenderedArea>k__BackingField: {fileID: 553752692}
   wallCheck: {fileID: 1532744984}
-  facingDirection: {x: 0, y: 0}
-  lastXFacingDirection: 0
-  lastYFacingDirection: 0
-  StartGoldAmount: 0
-  currentGoldAmount: 0
+  StartGoldAmount: 300
 --- !u!50 &671565393
 Rigidbody2D:
   serializedVersion: 4
@@ -2787,6 +2783,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 624893255}
+        m_TargetAssemblyTypeName: Test.UI.CanvasManager, Assembly-CSharp
+        m_MethodName: SetActiveShopUI
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &816949066
 MonoBehaviour:
@@ -6499,19 +6507,7 @@ MonoBehaviour:
     m_ActionId: 24440e92-6aa0-470d-9485-a50c8eb8452b
     m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2119642644}
-        m_TargetAssemblyTypeName: Test.Player.Movement.PlayerInputController, Assembly-CSharp
-        m_MethodName: OnSubmitInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 26326025-2b71-4024-860f-a7df931b5cb6
     m_ActionName: UI/Submit[/Keyboard/enter]
   - m_PersistentCalls:
@@ -6567,19 +6563,7 @@ MonoBehaviour:
     m_ActionId: 41962b4f-ba04-4107-a5d5-8f75b9b3331b
     m_ActionName: Player/Pause[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2119642644}
-        m_TargetAssemblyTypeName: Test.Player.Movement.PlayerInputController, Assembly-CSharp
-        m_MethodName: OnNextInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: b13a7ffe-8a6c-4f6f-b65c-30c1e3483e6a
     m_ActionName: UI/Next[/Keyboard/e]
   - m_PersistentCalls:
@@ -6598,6 +6582,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c26585d6-e244-46f9-a04e-4fbf0120aec4
     m_ActionName: Player/Inventary[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2119642644}
+        m_TargetAssemblyTypeName: Test.Player.Movement.PlayerInputController, Assembly-CSharp
+        m_MethodName: OnNextInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c7e092e6-80d2-428b-85ab-8fb1b07302bb
+    m_ActionName: Player/Next[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2119642644}
+        m_TargetAssemblyTypeName: Test.Player.Movement.PlayerInputController, Assembly-CSharp
+        m_MethodName: OnSubmitInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 688826c1-e908-4cdb-b995-850bb4d9d34b
+    m_ActionName: Player/Submit[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player

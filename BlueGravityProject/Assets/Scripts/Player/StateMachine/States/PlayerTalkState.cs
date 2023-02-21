@@ -19,7 +19,7 @@ namespace Test.Player.StateMachineSystem
         {
             base.Enter();
 
-            playerManager.InputController.ShiftActionMapToUI();
+            //playerManager.InputController.ShiftActionMapToUI();
 
         }
 
