@@ -4,21 +4,29 @@ using Test.DialogueSystem;
 using Test.Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Test.UI
 {
     public class CanvasManager : MonoBehaviour
     {
         [SerializeField] PlayerManager playerManager;
+        private SoundManager soundManager;
         [field: SerializeField] public GameObject PlayerInventoryPanel { get; private set; }
         [field: SerializeField] public GameObject ShopUI { get; private set; }
         [field: SerializeField] public GameObject HeadsShopSlots { get; private set; }
         [field: SerializeField] public GameObject BodiesShopSlots { get; private set; }
         [field: SerializeField] public GameObject DialoguePanel { get; private set; }
+        [field: SerializeField] public GameObject PauseMenuPanel { get; private set; }
         [field: SerializeField] public TextMeshProUGUI goldAmountShop { get; private set; }
         [field: SerializeField] public TextMeshProUGUI goldAmountInventory { get; private set; }
         private int amountOfGoldToGive;
 
+        public void Awake()
+        {
+            soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+            soundManager.StartLevelMusic();
+        }
         public void SetAmountOfGoldToGive( int value)
         {
             amountOfGoldToGive = value;
@@ -29,7 +37,33 @@ namespace Test.UI
         {
             goldAmountShop.text = playerManager.GetGoldAmount().ToString();         // optimize with event
             goldAmountInventory.text = playerManager.GetGoldAmount().ToString();
+            CheckPauseInput();
             //CheckIfShouldOpenShop();
+        }
+
+        public void Resume()
+        {
+            playerManager.InputController.SetIsPaused(false);
+            SetActivePauseMenu(false);
+        }
+        public void ExitGame()
+        {
+            Time.timeScale = 1;
+            playerManager.InputController.SetIsPaused(false);
+            SceneManager.LoadScene(0);
+        }
+
+        public void SetActivePauseMenu(bool value)
+        {
+            PauseMenuPanel.SetActive(value);
+            if(value)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
         }
         public void SetActivePlayerInventoryPanel(bool value)
         {
@@ -156,6 +190,27 @@ namespace Test.UI
             else
             {
                 return;
+            }
+        }
+        public void CheckPauseInput()
+        {
+            if(playerManager.InputController.PauseInput)
+            {
+                
+                if (PauseMenuPanel.activeSelf)
+                {
+                    playerManager.InputController.SetIsPaused(false);
+                    SetActivePauseMenu(false);
+                    
+                }
+                else
+                {
+                    playerManager.InputController.SetIsPaused(true);
+                    SetActivePauseMenu(true);
+                }
+                playerManager.InputController.PressedPauseInput();
+
+
             }
         }
     }
