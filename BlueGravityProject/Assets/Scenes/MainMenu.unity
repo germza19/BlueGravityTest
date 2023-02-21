@@ -1215,7 +1215,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -257, y: 0}
+  m_AnchoredPosition: {x: -257, y: 73}
   m_SizeDelta: {x: 416.09302, y: 499.308}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1582678136
@@ -1246,9 +1246,12 @@ MonoBehaviour:
 
     Enter
 
+    Tab
+
     Left Click
 
-    Right Click
+    Right
+    Click
 
     Esc
 
@@ -1443,7 +1446,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 208.046, y: 0}
+  m_AnchoredPosition: {x: 208.046, y: 72.999985}
   m_SizeDelta: {x: 416.093, y: 499.308}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1802112574
@@ -1466,7 +1469,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\tMovement\n\tTalk\n\tSkip Dialogue\n\tSubmit\n\tBuy / Equip\n\tSell\n\tPause\n"
+  m_text: "\tMovement\n\tTalk\n\tSkip Dialogue\n\tSubmit\n\tInventory\n\tBuy / Equip\n\tSell\n\tPause\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 466a623e77475b64ea576654e0bfdb45, type: 2}
   m_sharedMaterial: {fileID: 1954408606655768295, guid: 466a623e77475b64ea576654e0bfdb45, type: 2}
