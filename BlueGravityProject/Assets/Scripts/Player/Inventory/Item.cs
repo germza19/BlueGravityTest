@@ -38,15 +38,23 @@ namespace Test.Player.InventorySystem
         {
             isOnIventory = value;
         }
-        //public int GetBodyPartIndex(ItemAssets itemAssets)
-        //{
-        //    switch (itemBodyPart)
-        //    {
-        //        default:
-        //        case ItemBodyPart.head: return itemAssets.headIndex;
-        //        case ItemBodyPart.body: return itemAssets.bodyIndex;
-        //    }
-        //}
+
+        public int GetGoldValue(ItemType itemType)
+        {
+            switch(itemType)
+            {
+                default:
+                case ItemType.farmerHead: return 10;
+                case ItemType.farmerBody: return 10;
+                case ItemType.samuraiHead: return 30;
+                case ItemType.samuraiBody: return 30;
+                case ItemType.skullHead: return 50;
+                case ItemType.skullBody: return 50;
+                case ItemType.soldierHead: return 70;
+                case ItemType.soldierBody: return 70;
+            }
+                
+        }
 
         public Sprite GetSprite(ItemAssets itemAssets)
         {

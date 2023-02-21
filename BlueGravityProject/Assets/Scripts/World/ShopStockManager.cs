@@ -11,6 +11,7 @@ namespace Test.ShopSystem
         private ShopStock shopStock;
         [SerializeField] private ItemAssets itemAssets;
 
+
         [SerializeField] private Transform headsSlotsParent;
         [SerializeField] private Transform bodiesSlotsParent;
 

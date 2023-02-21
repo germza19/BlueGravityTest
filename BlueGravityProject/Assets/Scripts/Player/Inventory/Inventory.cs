@@ -15,23 +15,10 @@ namespace Test.Player.InventorySystem
             itemsList = new List<Item>();
 
             AddItem(new Item 
-            { 
-                itemBodyPart = Item.ItemBodyPart.head,
-                itemType = Item.ItemType.farmerHead,
-                amount = 1,
-                isOnIventory = true,
-                headIndexInPlayer = 0
-            });
-            AddItem(new Item 
-            { 
-                itemBodyPart = Item.ItemBodyPart.body,
-                itemType = Item.ItemType.farmerBody,
-                amount = 1,
-                isOnIventory = true,
-                bodyIndexInPlayer = 0
-            });
+            { itemBodyPart = Item.ItemBodyPart.head, itemType = Item.ItemType.farmerHead,amount = 1, isOnIventory = true, headIndexInPlayer = 0 });
+            AddItem(new Item { itemBodyPart = Item.ItemBodyPart.body, itemType = Item.ItemType.farmerBody, amount = 1, isOnIventory = true, bodyIndexInPlayer = 0 });
 
-            Debug.Log(itemsList.Count);
+            //Debug.Log(itemsList.Count);
         }
 
         public void AddItem(Item item)

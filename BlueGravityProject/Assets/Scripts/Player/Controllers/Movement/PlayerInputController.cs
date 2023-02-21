@@ -14,6 +14,7 @@ namespace Test.Player.Movement
         public bool InteractInput { get; private set; }
         public bool SubmitInput { get; private set; }
         public bool NextInput { get; private set; }
+        public bool InventoryInput { get; private set; }
         InputActionMap playerActionMap;
         InputActionMap uIActionMap;
         public void Awake()
@@ -81,6 +82,22 @@ namespace Test.Player.Movement
             bool result = NextInput;
             NextInput = false;
             return result;
+        }
+
+        public void OnInventoryInput(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                InventoryInput = true;
+            }
+            else if (context.canceled)
+            {
+                InventoryInput = false;
+            }
+        }
+        public void PressedInventory()
+        {
+            InventoryInput = false;
         }
  
         public void ShiftActionMapToUI()

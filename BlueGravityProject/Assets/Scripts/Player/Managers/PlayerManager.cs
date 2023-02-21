@@ -10,7 +10,7 @@ using Test.Player.InventorySystem;
 
 namespace Test.Player
 {
-    public class PlayerManager : MonoBehaviour
+    public class PlayerManager : MonoBehaviour, IShopCustomer
     {
         public PlayerStateMachine StateMachine { get; private set; }
 
@@ -43,6 +43,8 @@ namespace Test.Player
         public Vector2 facingDirection;
         public int lastXFacingDirection;
         public int lastYFacingDirection;
+        public int StartGoldAmount;
+        public int currentGoldAmount;
 
 
 
@@ -62,6 +64,9 @@ namespace Test.Player
             lastXFacingDirection = 1;
             inventory = new Inventory();
             ShopInventoryManager.SetInventory(inventory);
+            StartGoldAmount = 200;
+            currentGoldAmount = StartGoldAmount;
+            GetGoldAmount();
         }
         private void Start()
         {
@@ -78,6 +83,7 @@ namespace Test.Player
                 facingDirection = new Vector2(InputController.NormInputX, InputController.NormInputY);
                 ChangeRenderedArea();
             }
+            GetGoldAmount();
         }
         private void FixedUpdate()
         {
@@ -152,6 +158,39 @@ namespace Test.Player
                 }
 
             }
+        }
+
+        public int GetGoldAmount()
+        {
+            return currentGoldAmount;
+        }
+
+        public void BoughtItem(Item.ItemType itemType)
+        {
+            Debug.Log("boughtItem" + itemType);
+        }
+
+        public void SelledItem(Item.ItemType itemType)
+        {
+            Debug.Log("SelledItem" + itemType);
+        }
+
+        public bool TrySpendGoldAmount(int spendGoldAmount)
+        {
+            if(GetGoldAmount() >= spendGoldAmount)
+            {
+                currentGoldAmount -= spendGoldAmount;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void SellItem(int goldAmount)
+        {
+            currentGoldAmount += goldAmount;
         }
     }
 
