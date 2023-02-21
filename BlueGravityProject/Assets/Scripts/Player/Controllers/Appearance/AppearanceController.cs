@@ -19,8 +19,17 @@ namespace Test.Player.Skins
 
         [SerializeField] private Material guestMaterial;
 
-        public int headIndex;
-        public int bodyIndex;
+        public int headIndex { get; private set; }
+        public int bodyIndex { get; private set; }
+
+        public void SetHeadIndex(int value)
+        {
+            headIndex = value;
+        }
+        public void SetBodyIdex(int value)
+        {
+            bodyIndex = value;
+        }
 
         private void Update()
         {

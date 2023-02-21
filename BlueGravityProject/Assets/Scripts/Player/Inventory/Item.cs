@@ -25,6 +25,9 @@ namespace Test.Player.InventorySystem
             soldierBody,
         }
 
+        public int headIndexInPlayer;
+        public int bodyIndexInPlayer;
+
         public ItemType itemType;
         public ItemBodyPart itemBodyPart;
         public bool isOnIventory;
@@ -35,15 +38,15 @@ namespace Test.Player.InventorySystem
         {
             isOnIventory = value;
         }
-        public int GetBodyPartIndex(ItemAssets itemAssets)
-        {
-            switch (itemBodyPart)
-            {
-                default:
-                case ItemBodyPart.head: return itemAssets.headIndex;
-                case ItemBodyPart.body: return itemAssets.bodyIndex;
-            }
-        }
+        //public int GetBodyPartIndex(ItemAssets itemAssets)
+        //{
+        //    switch (itemBodyPart)
+        //    {
+        //        default:
+        //        case ItemBodyPart.head: return itemAssets.headIndex;
+        //        case ItemBodyPart.body: return itemAssets.bodyIndex;
+        //    }
+        //}
 
         public Sprite GetSprite(ItemAssets itemAssets)
         {

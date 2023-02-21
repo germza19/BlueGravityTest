@@ -14,10 +14,23 @@ namespace Test.Player.InventorySystem
         {
             itemsList = new List<Item>();
 
-            AddItem(new Item { itemBodyPart = Item.ItemBodyPart.head, itemType = Item.ItemType.farmerHead, amount = 1, isOnIventory = true });
-            AddItem(new Item { itemBodyPart = Item.ItemBodyPart.body, itemType = Item.ItemType.farmerBody, amount = 1, isOnIventory = true });
-            //AddItem(new Item { itemBodyPart = Item.ItemBodyPart.head, itemType = Item.ItemType.soldierHead, amount = 1 });
-            //AddItem(new Item { itemBodyPart = Item.ItemBodyPart.body, itemType = Item.ItemType.farmerBody, amount = 1 });
+            AddItem(new Item 
+            { 
+                itemBodyPart = Item.ItemBodyPart.head,
+                itemType = Item.ItemType.farmerHead,
+                amount = 1,
+                isOnIventory = true,
+                headIndexInPlayer = 0
+            });
+            AddItem(new Item 
+            { 
+                itemBodyPart = Item.ItemBodyPart.body,
+                itemType = Item.ItemType.farmerBody,
+                amount = 1,
+                isOnIventory = true,
+                bodyIndexInPlayer = 0
+            });
+
             Debug.Log(itemsList.Count);
         }
 
@@ -33,6 +46,7 @@ namespace Test.Player.InventorySystem
             }
             if(!itemAlreadyInInventory)
             {
+                item.amount = 1;
                 itemsList.Add(item);
             }            
             OnItemListChanged?.Invoke(this,EventArgs.Empty);
@@ -40,9 +54,32 @@ namespace Test.Player.InventorySystem
 
         public void RemoveItem(Item item)
         {
-            item.SetOninventary(false);
-            itemsList.Remove(item);
-            OnItemListChanged?.Invoke(this, EventArgs.Empty);
+            int headItemsOnList = 0;
+            int bodyItemsOnList = 0;
+
+            foreach (Item inventoryItem in itemsList)
+            {
+                if (inventoryItem.itemBodyPart == Item.ItemBodyPart.head)
+                {
+                    headItemsOnList++;
+                }
+                if (inventoryItem.itemBodyPart == Item.ItemBodyPart.body)
+                {
+                    bodyItemsOnList ++;
+                }
+            }
+            if((item.itemBodyPart == Item.ItemBodyPart.head && headItemsOnList <= 1) || (item.itemBodyPart == Item.ItemBodyPart.body && bodyItemsOnList <= 1))
+            {
+                return;
+            }
+            else
+            {
+                item.amount = 0;
+                item.SetOninventary(false);
+                itemsList.Remove(item);
+                OnItemListChanged?.Invoke(this, EventArgs.Empty);
+            }
+
             //Item itemInInventory = null;
             //foreach (Item inventoryItem in itemsList)
             //{
@@ -56,6 +93,21 @@ namespace Test.Player.InventorySystem
             //{
             //    itemsList.Remove(item);
             //}
+        }
+        public void EquipItem(PlayerManager playerManager,Item item)
+        {
+            if(playerManager.StateMachine.CurrentState != playerManager.TalkState)
+            {
+                if (item.itemBodyPart == Item.ItemBodyPart.body)
+                {
+                    playerManager.AppearanceController.SetBodyIdex(item.bodyIndexInPlayer);
+                }
+                else if (item.itemBodyPart == Item.ItemBodyPart.head)
+                {
+                    playerManager.AppearanceController.SetHeadIndex(item.headIndexInPlayer);
+                }
+            }
+
         }
 
         public List<Item> GetItemList()

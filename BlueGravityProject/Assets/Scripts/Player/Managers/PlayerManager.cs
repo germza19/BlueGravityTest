@@ -22,11 +22,14 @@ namespace Test.Player
 
         [field: SerializeField] public PlayerData playerData { get; private set; }
 
-        public CanvasManager CanvasManager { get; private set; }
-        public DialogueManager DialogueManager { get; private set; }
-        [field: SerializeField] public InventoryManager InventoryManager { get; private set; }
+        [field: SerializeField] public CanvasManager CanvasManager { get; private set; }
+        //public DialogueManager DialogueManager { get; private set; }
+        [field: SerializeField] public InventoryManager ShopInventoryManager { get; private set; }
+        [field: SerializeField] public InventoryManager PlayerInventoryManager { get; private set; }
+
         public Animator Anim { get; private set; }
         public PlayerInputController InputController { get; private set; }
+        public AppearanceController AppearanceController { get; private set; }
         public CapsuleCollider2D MovementCollider { get; private set; }
         public Rigidbody2D RB { get; private set; }
         [field: SerializeField] public RenderedArea HeadRenderArea { get; private set; }
@@ -51,15 +54,15 @@ namespace Test.Player
             MoveState = new PlayerMoveState(this, StateMachine, playerData, "Move");
             TalkState = new PlayerTalkState(this, StateMachine, playerData, "Talk");
 
-            CanvasManager = GameObject.Find("Canvas").GetComponent<CanvasManager>();
-
             Anim = GetComponentInChildren<Animator>();
             RB = GetComponent<Rigidbody2D>();
             InputController = GetComponentInChildren<PlayerInputController>();
+            AppearanceController = GetComponentInChildren<AppearanceController>();
             MovementCollider = GetComponent<CapsuleCollider2D>();
             lastXFacingDirection = 1;
             inventory = new Inventory();
-            InventoryManager.SetInventory(inventory);
+            ShopInventoryManager.SetInventory(inventory);
+            PlayerInventoryManager.SetInventory(inventory);
         }
         private void Start()
         {

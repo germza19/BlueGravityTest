@@ -15,8 +15,8 @@ namespace Test.Player.InventorySystem
 
         public GameObject pfItemButton;
 
-        public int headIndex = 0;
-        public int bodyIndex = 1;
+        //public int headIndex = 0;
+        //public int bodyIndex = 1;
 
         public Sprite farmerHeadSprite;
         public Sprite farmerBodySprite;

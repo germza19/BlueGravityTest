@@ -65,8 +65,8 @@ namespace Test.Player.InventorySystem
                 
             }
             else
-            {                
-                //equip
+            {
+                playerManager.inventory.EquipItem(playerManager,GetItem());
             }
             //DestroSelf();
         }

@@ -106,7 +106,7 @@ RectTransform:
   m_GameObject: {fileID: 83923903009152646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3793469, y: 0.3793469, z: 0.3793469}
+  m_LocalScale: {x: 1.2161009, y: 1.2161009, z: 1.2161009}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 83923902598816383}
@@ -214,6 +214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item:
+    headIndexInPlayer: 0
+    bodyIndexInPlayer: 0
     itemType: 0
     itemBodyPart: 0
     isOnIventory: 0
@@ -222,6 +224,7 @@ MonoBehaviour:
   itemImage: {fileID: 83923902598816382}
   amountText: {fileID: 2354485797144196179}
   playerManager: {fileID: 0}
+  isOnInventory: 0
 --- !u!114 &459795641013230784
 MonoBehaviour:
   m_ObjectHideFlags: 0

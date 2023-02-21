@@ -12,7 +12,7 @@ namespace Test.DialogueSystem
 {
     public class DialogueManager : MonoBehaviour
     {
-        [SerializeField] public GameObject dialoguePanel;
+        //[SerializeField] public GameObject dialoguePanel;
         [SerializeField] private TextMeshProUGUI dialogueText;
         [SerializeField] private TextMeshProUGUI displayNameText;
         [SerializeField] private GameObject[] choices;
@@ -57,7 +57,7 @@ namespace Test.DialogueSystem
         private void Start()
         {
             dialogueIsPlaying = false;
-            dialoguePanel.SetActive(false);
+            //dialoguePanel.SetActive(false);
             choicesText = new TextMeshProUGUI[choices.Length];
             choicesBG.SetActive(false);
 
@@ -113,7 +113,8 @@ namespace Test.DialogueSystem
         {
             currentStory = new Story(inkJSON.text);
             dialogueIsPlaying = true;
-            dialoguePanel.SetActive(true);
+            //dialoguePanel.SetActive(true);
+            playerManager.CanvasManager.SetActiveDialoguePanel(true);
             dialogueVariables.StartListening(currentStory);
 
             //reset portrait
@@ -137,7 +138,8 @@ namespace Test.DialogueSystem
             yield return new WaitForSeconds(0.2f);
             dialogueVariables.StopListening(currentStory);
             dialogueIsPlaying = false;
-            dialoguePanel.SetActive(false);
+            //dialoguePanel.SetActive(false);
+            playerManager.CanvasManager.SetActiveDialoguePanel(false);
             playerManager.StateMachine.ChangeState(playerManager.IdleState);
             dialogueText.text = "";
 

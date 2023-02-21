@@ -1,1 +1,2 @@
 VAR items = ""
+VAR accept = ""

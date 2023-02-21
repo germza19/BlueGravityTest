@@ -44,12 +44,12 @@ namespace Test.Player.InventorySystem
             }
             foreach (Item item in inventory.GetItemList())
             {
-                if (item.GetBodyPartIndex(itemAssets) == 0)
+                if (item.itemBodyPart == Item.ItemBodyPart.head)
                 {
                     GameObject instantiatedItem = InventoryItem.SpawnItemButton(itemAssets, item).gameObject;
                     instantiatedItem.transform.SetParent(headsSlotsParent.transform);
                 }
-                else if (item.GetBodyPartIndex(itemAssets) == 1)
+                else if (item.itemBodyPart == Item.ItemBodyPart.body)
                 {
                     GameObject instantiatedItem = InventoryItem.SpawnItemButton(itemAssets, item).gameObject;
                     instantiatedItem.transform.SetParent(bodiesSlotsParent.transform);
