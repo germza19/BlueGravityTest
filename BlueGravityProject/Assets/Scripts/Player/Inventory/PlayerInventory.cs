@@ -2,17 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInventory : MonoBehaviour
+namespace Test.Player.InventorySystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerInventory : MonoBehaviour
     {
-        
+        private Inventory inventory;
+        [SerializeField] private ItemAssets itemAssets;
+        public PlayerManager playerManager;
+
+        [SerializeField] private Transform headsSlotsParent;
+        [SerializeField] private Transform bodiesSlotsParent;
+
+        private void Start()
+        {
+            SetInventory(playerManager.inventory);
+        }
+
+        public void SetInventory(Inventory inventory)
+        {
+            this.inventory = inventory;
+
+            inventory.OnItemListChanged += Inventory_OnItemListChanged;
+            RefreshInventory(itemAssets);
+        }
+
+        private void Inventory_OnItemListChanged(object sender, System.EventArgs e)
+        {
+            RefreshInventory(itemAssets);
+        }
+
+        private void RefreshInventory(ItemAssets itemAssets)
+        {
+            foreach (Transform child in headsSlotsParent)
+            {
+                Destroy(child.gameObject);
+            }
+            foreach (Transform child in bodiesSlotsParent)
+            {
+                Destroy(child.gameObject);
+            }
+            foreach (Item item in inventory.GetItemList())
+            {
+                if (item.itemBodyPart == Item.ItemBodyPart.head)
+                {
+                    GameObject instantiatedItem = InventoryItem.SpawnItemButton(itemAssets, item).gameObject;
+                    instantiatedItem.transform.SetParent(headsSlotsParent.transform);
+                }
+                else if (item.itemBodyPart == Item.ItemBodyPart.body)
+                {
+                    GameObject instantiatedItem = InventoryItem.SpawnItemButton(itemAssets, item).gameObject;
+                    instantiatedItem.transform.SetParent(bodiesSlotsParent.transform);
+                }
+
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

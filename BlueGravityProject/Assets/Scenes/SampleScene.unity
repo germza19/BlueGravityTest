@@ -910,6 +910,7 @@ GameObject:
   - component: {fileID: 333643931}
   - component: {fileID: 333643930}
   - component: {fileID: 333643929}
+  - component: {fileID: 333643932}
   m_Layer: 5
   m_Name: InventoryPanel
   m_TagString: Untagged
@@ -953,7 +954,6 @@ MonoBehaviour:
   itemAssets: {fileID: 1392163498}
   headsSlotsParent: {fileID: 2073972042}
   bodiesSlotsParent: {fileID: 884158326}
-  inventoryItemGO: {fileID: 83923903009152646, guid: 88426ce4fb078324a855c156b48d7214, type: 3}
 --- !u!114 &333643930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -992,6 +992,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333643927}
   m_CullTransparentMesh: 1
+--- !u!114 &333643932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333643927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527ff0ccf097ca1419dca2f6fd535346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemAssets: {fileID: 1392163498}
+  playerManager: {fileID: 671565390}
+  headsSlotsParent: {fileID: 2073972042}
+  bodiesSlotsParent: {fileID: 884158326}
 --- !u!1 &352038831
 GameObject:
   m_ObjectHideFlags: 0
@@ -2066,7 +2082,8 @@ MonoBehaviour:
   <stateName>k__BackingField: 
   <playerData>k__BackingField: {fileID: 11400000, guid: 5d8f163ce6acb7e4889b06c6e89f293d, type: 2}
   <CanvasManager>k__BackingField: {fileID: 624893255}
-  <InventoryManager>k__BackingField: {fileID: 703393847}
+  <ShopInventoryManager>k__BackingField: {fileID: 703393847}
+  <PlayerInventory>k__BackingField: {fileID: 0}
   <HeadRenderArea>k__BackingField: {fileID: 739297299}
   <BodyRenderedArea>k__BackingField: {fileID: 553752692}
   wallCheck: {fileID: 1532744984}
@@ -2203,7 +2220,6 @@ MonoBehaviour:
   itemAssets: {fileID: 1392163498}
   headsSlotsParent: {fileID: 2025161911}
   bodiesSlotsParent: {fileID: 779426969}
-  inventoryItemGO: {fileID: 83923903009152646, guid: 88426ce4fb078324a855c156b48d7214, type: 3}
 --- !u!1 &712467604
 GameObject:
   m_ObjectHideFlags: 0
@@ -3902,7 +3918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1217150269
 RectTransform:
   m_ObjectHideFlags: 0

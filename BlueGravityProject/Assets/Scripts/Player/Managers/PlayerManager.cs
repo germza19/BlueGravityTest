@@ -25,7 +25,7 @@ namespace Test.Player
         [field: SerializeField] public CanvasManager CanvasManager { get; private set; }
         //public DialogueManager DialogueManager { get; private set; }
         [field: SerializeField] public InventoryManager ShopInventoryManager { get; private set; }
-        [field: SerializeField] public InventoryManager PlayerInventoryManager { get; private set; }
+        [field: SerializeField] public PlayerInventory PlayerInventory { get; private set; }
 
         public Animator Anim { get; private set; }
         public PlayerInputController InputController { get; private set; }
@@ -62,7 +62,6 @@ namespace Test.Player
             lastXFacingDirection = 1;
             inventory = new Inventory();
             ShopInventoryManager.SetInventory(inventory);
-            PlayerInventoryManager.SetInventory(inventory);
         }
         private void Start()
         {

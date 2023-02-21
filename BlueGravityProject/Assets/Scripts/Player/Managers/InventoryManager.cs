@@ -10,14 +10,8 @@ namespace Test.Player.InventorySystem
         private Inventory inventory;
         [SerializeField] private ItemAssets itemAssets;
 
-        //[SerializeField] private RectTransform[] headsSlotsTransforms;
-        //[SerializeField] private RectTransform[] bodiesSlotsTransforms;
-
         [SerializeField] private Transform headsSlotsParent;
         [SerializeField] private Transform bodiesSlotsParent;
-
-        [SerializeField] private GameObject inventoryItemGO;
-        //[SerializeField] private GameObject itemSlotTemplate;
 
         public void SetInventory(Inventory inventory)
         {
